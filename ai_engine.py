@@ -143,7 +143,7 @@ class chess_ai:
         if player is Player.PLAYER_1:
             if piece.is_player("black"):
                 if piece.get_name() is "k":
-                    return -1000
+                    return 1000
                 elif piece.get_name() is "q":
                     return 100
                 elif piece.get_name() is "r":

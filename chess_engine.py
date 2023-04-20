@@ -6,6 +6,10 @@
 #
 from Piece import Rook, Knight, Bishop, Queen, King, Pawn
 from enums import Player
+import logging
+
+# Set the logging level and write to a file
+logging.basicConfig(filename='example.log', level=logging.INFO)
 
 '''
 r \ c     0           1           2           3           4           5           6           7 
@@ -221,11 +225,14 @@ class game_state:
         all_black_moves = self.get_all_legal_moves(Player.PLAYER_2)
         if self._is_check and self.whose_turn() and not all_white_moves:
             print("white lost")
+            logging.info('white lost')
             return 0
         elif self._is_check and not self.whose_turn() and not all_black_moves:
             print("black lost")
+            logging.info('black lost')
             return 1
         elif not all_white_moves and not all_black_moves:
+            logging.info('stalemate')
             return 2
         else:
             return 3

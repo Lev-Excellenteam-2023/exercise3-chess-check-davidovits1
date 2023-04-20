@@ -11,6 +11,7 @@ import pygame as py
 import ai_engine
 from enums import Player
 
+
 """Variables"""
 WIDTH = HEIGHT = 512  # width and height of the chess board
 DIMENSION = 8  # the dimensions of the chess board

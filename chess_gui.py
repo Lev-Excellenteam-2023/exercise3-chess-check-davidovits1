@@ -11,6 +11,7 @@ import pygame as py
 import ai_engine
 from enums import Player
 
+
 """Variables"""
 WIDTH = HEIGHT = 512  # width and height of the chess board
 DIMENSION = 8  # the dimensions of the chess board
@@ -176,8 +177,8 @@ def main():
                     print(len(game_state.move_log))
 
         draw_game_state(screen, game_state, valid_moves, square_selected)
-
-        endgame = game_state.checkmate_stalemate_checker()
+        if not game_over:
+            endgame = game_state.checkmate_stalemate_checker()
         if endgame == 0:
             game_over = True
             draw_text(screen, "Black wins.")
@@ -185,8 +186,8 @@ def main():
             game_over = True
             draw_text(screen, "White wins.")
         elif endgame == 2:
-            game_over = True
-            draw_text(screen, "Stalemate.")
+             game_over = True
+             draw_text(screen, "Stalemate.")
 
         clock.tick(MAX_FPS)
         py.display.flip()

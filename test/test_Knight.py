@@ -88,6 +88,20 @@ class TestKnight(unittest.TestCase):
         actual_moves = knight.get_valid_piece_takes(game_state_mock)
         self.assertCountEqual(actual_moves, expected_moves)
 
+    @patch('chess_engine.game_state')
+    def test_get_valid_piece_moves_on_middle_board(self, MockGameState):
+        def get_piece_side_effect(row, col):
+            return Piece('p', row, col, Player.EMPTY)
+        game_state_mock = MockGameState()
+        game_state_mock.get_piece.side_effect = get_piece_side_effect
+        knight = Knight("N", 4, 4, Player.PLAYER_1)
+        expected_moves = [
+            (2, 3), (2, 5), (3, 2), (3, 6),
+            (5, 2), (5, 6), (6, 3), (6, 5)
+        ]
+        actual_moves = knight.get_valid_piece_moves(game_state_mock)
+        self.assertCountEqual(actual_moves, expected_moves)
+
 
 if __name__ == '__main__':
     unittest.main()
